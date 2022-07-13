@@ -1,4 +1,5 @@
 package com.generation.farmaciapopular.model;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -24,73 +25,32 @@ com a anotação "@NotBlank". */
 public class Produto {
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank (message = "O nome do medicamento é Obrigatório!")
-	@Size(min = 5, max = 100, message = "O nome do medicamento deve conter no mínimo 5 e no máximo 100 caracteres. ")
-	private String nomeMedicamento;
+	@Size (min = 5, max = 100, message = "O nome do medicamento deve conter no mínimo 5 e no máximo 100 caracteres. ")
+	private String nomeProduto;
 	
-	@Size (max = 1000)
-	private String infoMedicamento;
+	@Size (max = 1000, message="A descrição do produto deve conter no máximo 1000(um mil) caracteres.")
+	private String descricaoProduto;
 	
 	@NotBlank (message = "O preço do medicamento é obrigatório!")
-	private float valorMedicamento;
+	private DecimalFormat valorProduto;
+	
+	@Size (max = 2000)
+	private String fotoProduto;
+	
+	@Size (min = 1, max = 500)
+	private String estoqueProduto;
 	
 	@UpdateTimestamp
-	private LocalDateTime data;
+	private LocalDateTime dataCadastro;
 
 	@ManyToOne
 	@JsonIgnoreProperties ("produto")
 	private Categoria categoria;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNomeMedicamento() {
-		return nomeMedicamento;
-	}
-
-	public void setNomeMedicamento(String nomeMedicamento) {
-		this.nomeMedicamento = nomeMedicamento;
-	}
-
-	public String getInfoMedicamento() {
-		return infoMedicamento;
-	}
-
-	public void setInfoMedicamento(String infoMedicamento) {
-		this.infoMedicamento = infoMedicamento;
-	}
-
-	public float getValorMedicamento() {
-		return valorMedicamento;
-	}
-
-	public void setValorMedicamento(float valorMedicamento) {
-		this.valorMedicamento = valorMedicamento;
-	}
-
-	public LocalDateTime getData() {
-		return data;
-	}
-
-	public void setData(LocalDateTime data) {
-		this.data = data;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
 	
 	
 	

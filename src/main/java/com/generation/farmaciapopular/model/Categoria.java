@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,13 +26,13 @@ public class Categoria {
 	@GeneratedValue (strategy= GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull (message = "A descrição do medicamento é obrigatória!")
-	private String descMedicamento;
+	@NotBlank(message = "O nome da categoria é obrigatório!")
+	private String nomeCategoria;
 
 	@OneToMany (mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
 	private List <Produto> produto;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -40,14 +41,14 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getDescMedicamento() {
-		return descMedicamento;
+	public String getNomeCategoria() {
+		return nomeCategoria;
 	}
 
-	public void setDescMedicamento(String descMedicamento) {
-		this.descMedicamento = descMedicamento;
+	public void setNomeCategoria(String nomeCategoria) {
+		this.nomeCategoria = nomeCategoria;
 	}
-	
+
 	public List<Produto> getProduto() {
 		return produto;
 	}
@@ -55,5 +56,6 @@ public class Categoria {
 	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
 	}
-
+	
+	
 }
